@@ -98,3 +98,9 @@ from alunos
 left join matriculas on alunos.id = alunos_id
 group by alunos.id;
 
+--atividade 20
+select produto, count(id) as numero_de_vendas
+from vendas
+group by produto
+order by numero_de_vendas desc
+limit 1;
