@@ -30,3 +30,8 @@ group by autores.id;
 select curso, count(aluno_id) as quantidade_de_alunos
 from matriculas
 group by curso;
+
+--atividade 8
+select produto, AVG(receita) as media_receita
+from vendas
+group by produto;
