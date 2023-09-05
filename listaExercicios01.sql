@@ -85,3 +85,9 @@ from vendas
 group by produto;
 order by receita_total asc
 limit 1;
+
+--atividade 18
+select autores.nome, SUM(20) as receita_total
+from autores
+left join livros on autores.id = autor_id
+group by autores.id;
