@@ -48,3 +48,8 @@ from autores
 left join livros on autores.id = livros.autor_id
 group by autores.id
 having total_de_livros > 2;
+
+--atividade 11
+select titulo, autores.nome as autor
+FROM livros
+inner join autores where livros.autor_id = autores.id;
