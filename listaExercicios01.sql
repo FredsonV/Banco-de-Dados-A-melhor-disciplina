@@ -91,3 +91,10 @@ select autores.nome, SUM(20) as receita_total
 from autores
 left join livros on autores.id = autor_id
 group by autores.id;
+
+--atividade 19
+select nome, count(matriculas.id) as quantidade_de_matriculas
+from alunos
+left join matriculas on alunos.id = alunos_id
+group by alunos.id;
+
