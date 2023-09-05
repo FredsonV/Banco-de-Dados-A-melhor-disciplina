@@ -3,8 +3,14 @@ select titulo from livros;
 
 --atividade 2
 select NOME from autores
-WHERE nascimento < '1900-01-01';
+where nascimento < '1900-01-01';
 
 --atividade 3
 select titulo.from livros 
 inner join autores on autores.nome = 'J.K. Rowling';
+
+--atividade 4
+select alunos.nome
+from alunos 
+join matriculas on alunos.id = matriculas.aluno_id
+where matriculas.curso = 'Engenharia de Software';
