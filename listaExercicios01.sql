@@ -66,3 +66,9 @@ left join livros on autores.id = autor_id;
 --atividade 14
 select curso, alunos.nome from matriculas
 right join alunos on matriculas.aluno_id = alunos.id;
+
+--atividade 15 
+select nome, curso from alunos
+inner join matriculas on alunos.id = matriculas.aluno_id;
+
+
