@@ -1,3 +1,4 @@
+
 --atividade 1
 select titulo from livros;
 
@@ -53,3 +54,7 @@ having total_de_livros > 2;
 select titulo, autores.nome as autor
 FROM livros
 inner join autores where livros.autor_id = autores.id;
+
+--atividade 12
+select nome, curso from alunos
+inner join matriculas on alunos.id = matriculas.aluno_id;
