@@ -57,4 +57,8 @@ inner join autores where livros.autor_id = autores.id;
 
 --atividade 12
 select nome, curso from alunos
-inner join matriculas on alunos.id = matriculas.aluno_id;
+inner join matriculas on alunos.id = matricula_id;
+
+-- exercício 13
+select autores.nome, titulo from autores
+left join livros on autores.id = autor_id;
