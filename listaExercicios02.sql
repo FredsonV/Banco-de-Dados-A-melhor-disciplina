@@ -117,3 +117,15 @@ BEGIN
 END;
 //
 DELIMITER ;
+
+-- atividade 9
+DELIMITER //
+CREATE PROCEDURE sp_TitulosCategoria(IN categoriaNome VARCHAR(100))
+BEGIN
+    select Livro.Titulo
+    from Livro
+    inner join Categoria ON Livro.Categoria_ID = Categoria.Categoria_ID
+    where Categoria.Nome = categoriaNome;
+END;
+//
+DELIMITER ;
