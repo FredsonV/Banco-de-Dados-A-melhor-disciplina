@@ -52,3 +52,15 @@ BEGIN
 END;
 //
 DELIMITER;
+
+-- atividade 5
+DELIMITER //
+CREATE PROCEDURE sp_LivrosAteAno(IN ano INT)
+BEGIN
+    select Titulo, Ano_Publicacao
+    from Livro
+    where Ano_Publicacao <= ano;
+END;
+//
+DELIMITER ;
+
