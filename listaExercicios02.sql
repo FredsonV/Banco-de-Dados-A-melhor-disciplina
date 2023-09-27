@@ -13,12 +13,24 @@ call sp_ListarAutores()
 -- atividade 2
 DELIMITER //
 CREATE PROCEDURE sp_LivrosPorCategoria(in CategoriaNome VARCHAR(50))
-	BEGIN
-		select Livro.titulo
-		from Livro
-		inner join Categoria ON Livro.Categoria_ID = Categoria.Categoria_ID
-	END;
+BEGIN
+	select Livro.titulo
+	from Livro
+	inner join Categoria ON Livro.Categoria_ID = Categoria.Categoria_ID
+END;
 //
 DELIMITER ;
 
 call sp_LivrosPorCategoria('Autoajuda');
+
+-- atividade 3
+DELIMITER //
+CREATE PROCEDURE sp_ContarLivrosPorCategoria(in categoriaNome VARCHAR(50), OUT livrosTotal)
+BEGIN
+	select count(*) into livrosTotal
+	from livro
+	inner join Categoria ON Livro.Categoria_ID = Categoria.Categoria_ID
+	where Categoria.Nome = categoriaNome;
+END;
+//	
+DELIMITER;
