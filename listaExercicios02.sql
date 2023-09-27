@@ -103,3 +103,17 @@ BEGIN
 END;
 //
 DELIMITER;
+
+-- atividade 8 
+DELIMITER //
+CREATE PROCEDURE sp_AuntorAntigo(OUT autorAntigoNome VARCHAR(100))
+BEGIN
+    select CONCAT(Nome, ' ', Sobrenome) INTO autorAntigoNome
+    from Autor
+    where Data_Nascimento = (
+        select MIN(Data_Nascimento)
+        from Autor
+    );
+END;
+//
+DELIMITER ;
