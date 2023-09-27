@@ -34,3 +34,21 @@ BEGIN
 END;
 //	
 DELIMITER;
+
+-- atividade 4 
+DELIMITER //
+CREATE PROCEDURE sp_VerificarLivrosCategoria(IN categoriaNome VARCHAR(100), OUT posselivro BOOLEAN)
+BEGIN
+	declare qtd INT;
+	select count(*) into qtd
+	from Livro
+	inner join Categoria on Livro.Categoria_ID = Categoria_Categoria_ID
+	where Categoria.Nome = categoria_ID;
+
+	if qtd > 0 THEN
+		set posselivro = TRUE;
+	else
+		set posselivro = False;
+END;
+//
+DELIMITER;
