@@ -129,3 +129,16 @@ BEGIN
 END;
 //
 DELIMITER ;
+
+-- atividade 10
+
+DELIMITER //
+CREATE PROCEDURE sp_LivrosESeusAutores()
+BEGIN
+    select Livro.Titulo, Autor.Nome, Autor.Sobrenome
+    from Livro
+    inner join Autor_Livro ON Livro.Livro_ID = Autor_Livro.Livro_ID
+    inner join Autor ON Autor_Livro.Autor_ID = Autor.Autor_ID;
+END;
+//
+DELIMITER ;
