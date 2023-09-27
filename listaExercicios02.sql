@@ -37,7 +37,7 @@ DELIMITER;
 
 -- atividade 4 
 DELIMITER //
-CREATE PROCEDURE sp_VerificarLivrosCategoria(IN categoriaNome VARCHAR(100), OUT posselivro BOOLEAN)
+CREATE PROCEDURE sp_VerificarLivrosCategoria(IN categoriaNome VARCHAR(50), OUT posselivro BOOLEAN)
 BEGIN
 	declare qtd INT;
 	select count(*) into qtd
@@ -64,3 +64,14 @@ END;
 //
 DELIMITER ;
 
+-- atividade 6 
+DELIMITER //
+CREATE PROCEDURE sp_TitulosPorCategoria(IN categoriaNome VARCHAR(50))
+BEGIN
+    select Livro.Titulo
+    from Livro
+    inner join Categoria ON Livro.Categoria_ID = Categoria.Categoria_ID
+    where Categoria.Nome = categoriaNome;
+END;
+//
+DELIMITER ;
