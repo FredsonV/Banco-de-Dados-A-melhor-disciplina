@@ -137,3 +137,49 @@ SELECT SUM(IF(quantidade > 0, preco * quantidade, 0)) as soma_total_em_estoque
 FROM produtos;
 
 
+-- ATIVIDADE 7
+-- a) 
+CREATE or REPLACE FUNCTION calcular_fatorial(n in NUMBER)
+RETURN NUMBER IS
+BEGIN
+    IF n <= 1 THEN
+        RETURN 1;
+    ELSE
+        RETURN n * calcular_fatorial(n - 1);
+    END IF;
+END calcular_fatorial;
+
+-- b) 
+CREATE OR REPLACE FUNCTION f_exponencial(base IN NUMBER, expoente IN NUMBER)
+RETURN NUMBER IS
+    resultado NUMBER := 1;
+BEGIN
+    IF expoente < 0 THEN
+        RETURN NULL;
+    ELSIF expoente = 0 THEN
+        RETURN 1;
+    ELSE
+        FOR i IN 1..expoente LOOP
+            resultado := resultado * base;
+        END LOOP;
+        RETURN resultado;
+    END IF;
+END f_exponencial;
+/
+
+-- c) 
+CREATE or REPLACE FUNCTION is_palindromo(palavra in VARCHAR2)
+RETURN NUMBER IS
+    palavra_invertida VARCHAR2(4000);
+BEGIN
+    palavra_invertida := REVERSE(palavra);
+    
+    IF palavra = palavra_invertida THEN
+        RETURN 1;
+    ELSE
+        RETURN 0;
+    END IF;
+END is_palindromo;
+/
+
+
