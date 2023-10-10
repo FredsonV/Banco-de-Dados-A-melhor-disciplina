@@ -82,3 +82,19 @@ SELECT
     DAYNAME(data_evento) as dia_da_semana
 FROM eventos;
 
+
+-- ATIVIDADE 4
+-- a) 
+SELECT
+    produto,
+    quantidade,
+    IF(quantidade > 0, 'Em estoque', 'Fora de estoque') as status_estoque
+FROM produtos;
+
+-- b)
+SELECT
+    produto,
+    quantidade,
+    preco,
+    IF(quantidade > 0, quantidade * preco, 0) as valor_total
+FROM produtos;
