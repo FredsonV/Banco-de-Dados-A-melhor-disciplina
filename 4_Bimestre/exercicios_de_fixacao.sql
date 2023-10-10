@@ -51,3 +51,34 @@ FROM produtos;
 SELECT AVG(preco) as media_de_precos
 FROM produtos;
 
+
+-- ATIVIDADE 3
+-- a)
+CREATE TABLE eventos (
+    data_evento DATE
+);
+
+INSERT INTO eventos (data_evento)
+VALUES
+    ('1999-12-06'),
+    ('2020-02-13'),
+    ('2022-10-06'),
+    ('2023-04-09');
+
+-- b)
+INSERT INTO eventos (data_evento)
+VALUES (NOW());
+
+-- c)
+SELECT
+    data_evento as data_inicial,
+    CURDATE() as data_final,
+    DATEDIFF(CURDATE(), data_evento) as dias_entre_datas
+FROM eventos;
+
+-- d)
+SELECT
+    data_evento,
+    DAYNAME(data_evento) as dia_da_semana
+FROM eventos;
+
