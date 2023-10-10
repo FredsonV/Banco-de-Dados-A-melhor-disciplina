@@ -98,3 +98,22 @@ SELECT
     preco,
     IF(quantidade > 0, quantidade * preco, 0) as valor_total
 FROM produtos;
+
+
+-- ATIVIDADE 5
+-- a) 
+CREATE FUNCTION TOTAL_VALOR(preco DECIMAL(6, 2), quantidade INT)
+RETURNS DECIMAL(6, 2)
+BEGIN
+    DECLARE valor_total DECIMAL(6, 2);
+    SET valor_total = preco * quantidade;
+    RETURN valor_total;
+END;
+
+-- b)
+SELECT
+    produto,
+    preco,
+    quantidade,
+    TOTAL_VALOR(preco, quantidade) as valor_total
+FROM produtos;
