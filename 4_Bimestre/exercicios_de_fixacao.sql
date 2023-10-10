@@ -1,3 +1,4 @@
+-- ATIVIDADE 1
 -- a)
 CREATE TABLE nomes (
     nome VARCHAR(50)
@@ -28,3 +29,25 @@ SELECT
         else nome
     end as nome_com_prefixo
 FROM nomes;
+
+
+-- ATIVIDADE 2
+-- a) 
+CREATE TABLE produtos (
+    produto VARCHAR(50),
+    preco DECIMAL(6, 2),
+    quantidade INT
+);
+
+-- b)
+UPDATE produtos
+SET preco = ROUND(preco, 2);
+
+-- c)
+SELECT produto, preco, ABS(quantidade) as quantidade_absoluta
+FROM produtos;
+
+-- d)
+SELECT AVG(preco) as media_de_precos
+FROM produtos;
+
