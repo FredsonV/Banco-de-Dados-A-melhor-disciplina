@@ -117,3 +117,23 @@ SELECT
     quantidade,
     TOTAL_VALOR(preco, quantidade) as valor_total
 FROM produtos;
+
+
+-- ATIVIDADE 6 
+-- a)
+SELECT COUNT(*) as numero_total_de_produtos
+FROM produtos;
+
+-- b)
+SELECT produto, MAX(preco) as produto_mais_caro
+FROM produtos;
+
+-- c)
+SELECT produto, MIN(preco) as produto_mais_barato
+FROM produtos;
+
+-- d)
+SELECT SUM(IF(quantidade > 0, preco * quantidade, 0)) as soma_total_em_estoque
+FROM produtos;
+
+
