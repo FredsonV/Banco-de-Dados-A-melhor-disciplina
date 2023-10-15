@@ -65,6 +65,8 @@ BEGIN
   RETURN lista_titulos;
 END;
 
+SELECT listar_livros_por_autor('PrimeiroNome', 'UltimoNome') AS titulos_livros_autor;
+
 
 --atividade 3 
 DELIMITER //
@@ -99,4 +101,65 @@ BEGIN
 END;
 //
 DELIMITER ;
+
+CALL atualizar_resumos();
+
+
+--atividade 4 
+DELIMITER //
+CREATE FUNCTION media_livros_por_editora()
+RETURNS DECIMAL(10,2)
+BEGIN
+  DECLARE total_livro INT;
+  DECLARE total_editora INT;
+  DECLARE media DECIMAL(10,2);
+  
+  SET total_livro = 0;
+  SET total_editoras = 0;
+  SET media = 0.00;
+  
+  DECLARE cur_editora CURSOR FOR
+  SELECT Editora_ID FROM Editora;
+  
+  DECLARE editora_id INT;
+  DECLARE done_editora INT DEFAULT 0;
+
+  DECLARE CONTINUE HANDLER FOR NOT FOUND SET done_editora = 1;
+  
+  OPEN cur_editora;
+  
+  editoras_loop: LOOP
+    FETCH cur_editora INTO editora_id;
+    IF done_editora THEN
+      LEAVE editora_loop;
+    END IF;
+    
+    DECLARE cur_livro CURSOR FOR
+    SELECT COUNT(*) FROM Livro WHERE Editora_ID = editora_id;
+    
+    DECLARE livro_count INT;
+    
+    DECLARE CONTINUE HANDLER FOR NOT FOUND SET livro_count = 0;
+    
+    OPEN cur_livro;
+    FETCH cur_livro INTO livro_count;
+    CLOSE cur_livro;
+
+    SET total_livro = total_livro + livro_count;
+    SET total_editora = total_editora + 1;
+  END LOOP;
+  
+  CLOSE cur_editora;
+  
+  IF total_editora > 0 THEN
+    SET media = total_livro / total_editora;
+  END IF;
+  
+  RETURN media;
+END;
+//
+DELIMITER ;
+
+SELECT media_livros_por_editora() AS media_livros_por_editora;
+
 
