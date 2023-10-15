@@ -64,3 +64,39 @@ BEGIN
   
   RETURN lista_titulos;
 END;
+
+
+--atividade 3 
+DELIMITER //
+CREATE FUNCTION atualizar_resumos()
+RETURNS INT
+BEGIN
+  DECLARE done INT DEFAULT 0;
+  DECLARE Livro_id INT;
+  DECLARE resumo_atual VARCHAR(1000);
+  
+  DECLARE cur CURSOR FOR
+  SELECT Livro_ID, Resumo FROM Livro;
+  
+  DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = 1;
+  
+  OPEN cur;
+  
+  update_loop: LOOP
+    FETCH cur INTO Livro_id, resumo_atual;
+    IF done THEN
+      LEAVE update_loop;
+    END IF;
+    
+    SET resumo_atual = CONCAT(resumo_atual, ' Este é um excelente livro!');
+    
+    UPDATE Livro SET Resumo = resumo_atual WHERE Livro_ID = livro_id;
+  END LOOP;
+  
+  CLOSE cur;
+  
+  RETURN 1;
+END;
+//
+DELIMITER ;
+
