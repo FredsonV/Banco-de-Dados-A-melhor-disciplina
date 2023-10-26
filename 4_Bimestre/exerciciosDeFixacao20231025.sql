@@ -16,5 +16,15 @@ FOR EACH ROW
 CREATE TRIGGER cliente_updtae
 AFTER UPDATE ON Clientes
 FOR EACH ROW
-    INSERT INTO Auditoria (texto,)
+    INSERT INTO Auditoria (texto)
     VALUES ('O antigo nome: ' + OLD.Nome 'Foi alterado para:' + New.Nome)
+
+--atividade 4
+CREATE TRIGGER cliente_nome_update_trigger
+BEFORE UPDATE ON Clientes
+FOR EACH ROW
+    IF NEW.Nome IS NULL OR NEW.Nome = '' THEN
+        INSERT INTO Auditoria (texto)
+        VALUES ('Não coloque um valor nulo nem um texto vazio em seu nome');
+    END IF;
+
