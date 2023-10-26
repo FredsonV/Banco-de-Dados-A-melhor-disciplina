@@ -28,3 +28,15 @@ FOR EACH ROW
         VALUES ('Não coloque um valor nulo nem um texto vazio em seu nome');
     END IF;
 
+--atividade 5
+CREATE TRIGGER novo_pedido
+AFTER INSERT ON Pedidos
+FOR EACH ROW
+BEGIN
+    UPDATE Produtos
+    SET Estoque = Estoque - NEW.Quantidade
+    WHERE ProdutoID = NEW.ProdutoID;
+    IF (SELECT Estoque FROM Produtos WHERE ProdutoID = NEW.ProdutoID) <= 5 THEN
+        INSERT INTO Auditoria (texto)
+        VALUES ('Estoque do produto ' + CAST(NEW.ProdutoID AS CHAR) + ' ficou abaixo de 5 unidades.');
+    END IF;
